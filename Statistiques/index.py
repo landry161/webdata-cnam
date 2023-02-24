@@ -62,11 +62,31 @@ def mapOjetsRetrouvesParVilleParAn():
 
 			tooltip=str(ville)+" année "+str(annee)
 			folium.Marker([latitude,longitude],
-				popup="<i>"+str(ville)+" avec "+str(total)+" objets retrouvés</i>",
+				popup="<i>"+str(ville)+" avec "+str(total)+" objets retrouvé(e)s</i>",
 				icon=plugins.BeautifyIcon(icon="arrow-down", icon_shape="marker",number=total,background_color=myColor),
 				tooltip=tooltip).add_to(marker_cluster)
 		my_map.save("Resultats/map_objets_retrouves_par_ville_par_an.html")
 		webbrowser.open("Resultats/map_objets_retrouves_par_ville_par_an.html")
+
+def mapNombreObjetsRetrouvesParDepartement():
+	with open("map_nombre_objets_retrouves_par_departement.csv") as output:
+		result=csv.reader(output)
+		boulder_coords = [46.7111,1.7191] #France
+		my_map = folium.Map(location = boulder_coords,tiles='Stamen Terrain',zoom_start=6)
+		marker_cluster = MarkerCluster().add_to(my_map)
+		for ele in result:
+			departement=ele[0]
+			lat=ele[1]
+			lng=ele[2]
+			nature_objets=ele[3]
+			nombre_objets=ele[4]
+			tooltip="Département "+str(departement)
+			folium.Marker([lat,lng],
+				popup="<i>"+str(nombre_objets)+" "+str(nature_objets)+" retrouvé(e)s</i>",
+				tooltip=tooltip
+				).add_to(marker_cluster)
+		my_map.save("Resultats/map_nombre_objets_retrouves_par_departement.html")
+		webbrowser.open("Resultats/map_nombre_objets_retrouves_par_departement.html")
 
 def histogrammeGroupesObjetsRestituesNonRestituesParAn():
 	anneeObjetsRestitues=[]
@@ -165,5 +185,6 @@ mapOjetsRetrouvesParVilleParAn()
 pieChartObjetsRestituesParAnnee()
 pieChartObjetsNonRestituesParAnnee()
 histogrammeObjetsRecuperesParRegion()
+mapNombreObjetsRetrouvesParDepartement()
 print("Génération des resultats terminée")
 print("Résultats disponibles dans le dossier Statitiques")

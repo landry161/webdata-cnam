@@ -14,7 +14,6 @@ def pieChartObjetsRestituesParAnnee():
 	"""
 	execute_query=fsql(query).run()
 
-
 def mapOjetsRetrouvesParVilleParAn():
 	query="""
 	SELECT ville,annee_decouverte,lat,lng,count(annee_decouverte) AS TOTAL FROM df
@@ -41,7 +40,6 @@ def objetsRestituesParAnnee():
 	"""
 	execute_query=fsql(query).run()
 
-
 def nuageDePointsObjetsDecouvertsParAn():
 	query="""
 	SELECT annee_decouverte, count(nature_objets) AS TOTAL FROM df
@@ -59,6 +57,13 @@ def histogrammeObjetsRecuperesParRegion():
 	"""
 	execute_query=fsql(query).run()
 
+def mapNombreObjetsRetrouvesParDepartement():
+	query="""
+	SELECT departement,lat,lng,nature_objets,count(nature_objets) AS total FROM df
+	GROUP BY departement,nature_objets
+	SAVE OVERWRITE "H:/BOGBE JOSE LANDRY/Projet CNAM/Statistiques/map_nombre_objets_retrouves_par_departement.csv"
+	"""
+	execute_query=fsql(query).run()
 
 #Final
 mapOjetsRetrouvesParVilleParAn()
@@ -67,4 +72,5 @@ histogrammeObjetsRecuperesParRegion()
 objetNonRestitutesParAnnee()
 objetsRestituesParAnnee()
 pieChartObjetsRestituesParAnnee()
-print("Génération des requêtes terminée")
+mapNombreObjetsRetrouvesParDepartement()
+print("Génération des requêtes terminée.")
