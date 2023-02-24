@@ -4,3 +4,13 @@ How to use this project 1- First download these files on SNCF website https://ww
 
 https://ressources.data.sncf.com/explore/dataset/referentiel-gares-voyageurs/export/?disjunctive.gare_ug_libelle&sort=gare_alias_libelle_noncontraint (json files)
 
+Install
+Folium,
+Pandas,
+Geopandas
+Matplotlib
+FugueSQL
+
+
+Run firstly in main folder index.py and after query.py
+After into Statistiques folder, run index.py
