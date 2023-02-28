@@ -2,6 +2,7 @@ import csv
 import pandas as pd
 import pdb
 from fugue_sql import fsql
+import geopandas as gpd
 
 df=pd.read_csv("Final.csv",sep=';',encoding_errors='ignore')
 

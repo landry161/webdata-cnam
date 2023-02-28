@@ -68,7 +68,6 @@ def genererFichierFinal():
 
 				print("Ligne "+str(i)+" écrite")
 				fichierFinal.write(str(codeuic)+";"+date+";"+date_restitution+";"+gare+";"+ville+";"+villegare+";"+region+";"+departement+";"+nature_objets+";"+type_objets+";"+annee_decouverte+";"+annee_restitution+";"+lat+";"+lng+"\n")
-
 '''
 Fonction de génération du fichier de localisation des 
 villes,region et de leur localisation
@@ -97,7 +96,6 @@ def generateFichierCityLocationByCodeUI():
 					";"+departement+";"+str(lat)+";"+str(lng)+"\n")
 
 #Appel de fonction
-
 generateFichierCityLocationByCodeUI()
 formatageFichierRetrouves()
 genererFichierFinal()
